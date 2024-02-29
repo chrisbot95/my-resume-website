@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Server Communication</title>
+</head>
+<body>
+    <a href="/">Back to Resume</a>
+    <h1>Your Todo List</h1>
+    <div id="output"></div>
+    <input type="text" id="inputCommand" placeholder="Enter command" onkeypress="handleKeyPress(event)">
+    <button onclick="sendCommand()">Submit</button>
+
+    <script>
+        function handleKeyPress(event) {
+            // Check if the pressed key is Enter (key code 13)
+            if (event.key === 'Enter') {
+                sendCommand();
+            }
+        }
+
+        function sendCommand() {
+            const inputField = document.getElementById('inputCommand');
+            const inputCommand = inputField.value;
+            fetch(`/execute?command=${encodeURIComponent(inputCommand)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('output').innerText = data;
+                    inputField.value = '';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        sendCommand();
+    </script>
+</body>
+</html>

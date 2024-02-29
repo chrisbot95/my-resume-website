@@ -53,16 +53,17 @@ class Todo{
     static void Set_up_files(String user){
         try{
             file_todo = new File("users/"+user+"/todo.txt");
-            file_completed = new File("completed.txt");
-            file_history = new File("history.txt");
-            file_date = new File("date.txt");
-            file_show = new File("show.txt");
-            file_study = new File("study.txt");
-            file_network = new File("network.txt");
-            file_removed = new File("removed.txt");
+            file_completed = new File("users/"+user+"/completed.txt");
+            file_history = new File("users/"+user+"/history.txt");
+            file_date = new File("users/"+user+"/date.txt");
+            file_show = new File("users/"+user+"/show.txt");
+            file_study = new File("users/"+user+"/study.txt");
+            file_network = new File("users/"+user+"/network.txt");
+            file_removed = new File("users/"+user+"/removed.txt");
         }
         catch(Exception e){
             p("File not found");
+            System.exit(0);
         }
     }
 

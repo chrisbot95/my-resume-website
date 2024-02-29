@@ -1,37 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Server Communication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name - Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #3498db;
+      color: #fff;
+      text-align: center;
+      padding: 2em 0;
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    section {
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contact-info img {
+      margin-right: 10px;
+    }
+
+    .education {
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Your Todo List</h1>
-    <div id="output"></div>
-    <input type="text" id="inputCommand" placeholder="Enter command" onkeypress="handleKeyPress(event)">
-    <button onclick="sendCommand()">Submit</button>
 
-    <script>
-        function handleKeyPress(event) {
-            // Check if the pressed key is Enter (key code 13)
-            if (event.key === 'Enter') {
-                sendCommand();
-            }
-        }
+  <header>
+    <h1>Your Name</h1>
+    <p>Web Developer</p>
+  </header>
 
-        function sendCommand() {
-            const inputField = document.getElementById('inputCommand');
-            const inputCommand = inputField.value;
-            fetch(`/execute?command=${encodeURIComponent(inputCommand)}`)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('output').innerText = data;
-                    inputField.value = '';
-                })
-                .catch(error => console.error('Error:', error));
-        }
+  <section>
+    <h2>Contact Information</h2>
+    <ul class="contact-info">
+      <li><img src="location-icon.png" alt="Location"> City, Country</li>
+      <li><img src="email-icon.png" alt="Email"> your.email@example.com</li>
+      <li><img src="phone-icon.png" alt="Phone"> (123) 456-7890</li>
+      <li><img src="linkedin-icon.png" alt="LinkedIn"> linkedin.com/in/yourname</li>
+      <li><img src="github-icon.png" alt="GitHub"> github.com/yourusername</li>
+    </ul>
+  </section>
 
-        sendCommand();
-    </script>
+  <section>
+    <h2>Summary</h2>
+    <p>
+      I am a passionate and dedicated web developer with experience in HTML, CSS, and JavaScript.
+      I enjoy creating responsive and user-friendly websites and applications.
+    </p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>JavaScript (ES6+)</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>Git</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <h3>Web Developer - ABC Company</h3>
+    <p>June 2020 - Present</p>
+    <ul>
+      <li>Developed and maintained company website.</li>
+      <li>Collaborated with cross-functional teams to design and implement new features.</li>
+    </ul>
+
+    <h3>Intern - XYZ Agency</h3>
+    <p>January 2020 - May 2020</p>
+    <ul>
+      <li>Assisted in the development of client websites.</li>
+      <li>Gained experience with responsive design and front-end frameworks.</li>
+    </ul>
+  </section>
+
+  <section class="education">
+    <h2>Education</h2>
+    <h3>Bachelor of Science in Computer Science</h3>
+    <p>University of Example, Graduation: May 2020</p>
+  </section>
+
+  <a href="/todo">Go to Todo Page</a>
+
 </body>
+
 </html>
