@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Read Todo</title>
+    <title>Java Server Communication</title>
 </head>
 <body>
+    <h1>Your Todo List</h1>
+    <div id="output"></div>
+    <input type="text" id="inputCommand" placeholder="Enter command" onkeypress="handleKeyPress(event)">
+    <button onclick="sendCommand()">Submit</button>
 
-<h1 id="todoHeader">Loading first line from todo.txt...</h1>
+    <script>
+        function handleKeyPress(event) {
+            // Check if the pressed key is Enter (key code 13)
+            if (event.key === 'Enter') {
+                sendCommand();
+            }
+        }
 
-<script>
-    function readTodo() {
-        const fileName = 'todo.txt';
+        function sendCommand() {
+            const inputField = document.getElementById('inputCommand');
+            const inputCommand = inputField.value;
+            fetch(`/execute?command=${encodeURIComponent(inputCommand)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('output').innerText = data;
+                    inputField.value = '';
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
-        fetch(fileName)
-            .then(response => response.text())
-            .then(content => {
-                // Split the content into lines and display the first line as a header
-                const lines = content.split('\n');
-                const firstLine = lines[0].trim();
-                document.getElementById('todoHeader').textContent = firstLine;
-            })
-            .catch(error => {
-                console.error('Error reading file:', error);
-            });
-    }
-
-    // Automatically trigger readTodo when the window is loaded
-    window.onload = readTodo;
-</script>
-
+        sendCommand();
+    </script>
 </body>
 </html>
